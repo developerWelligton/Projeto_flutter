@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
+//--------commit
         initialRoute: '/',
         onGenerateRoute: RouteGenerator.generateRoute,
         home: MyHome());
@@ -48,7 +48,6 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           FirebaseAuth.instance.signOut();
@@ -77,103 +76,110 @@ class MyHome extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: new SizedBox(
-
                         child: Row(
-
                           children: <Widget>[
-                        Flexible(
+                            Flexible(
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(18, 230, 12, 12),
+                                padding:
+                                    const EdgeInsets.fromLTRB(18, 230, 12, 12),
                                 child: Column(
                                   children: [
-                                  Container(
-
-                                  width: 240.0,
-                                  height: 140.0,
-                                    child: RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(18.0),
-                                            side: BorderSide(color: Colors.grey)
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: 18),
-                                          child: Column( // Replace with a Row for horizontal icon + text
-                                            children: <Widget>[
-                                              Icon(Icons.history, size: 70.0, color: Colors.lightGreen),
-                                              Text("Histórico",
-                                                style: new TextStyle(
-                                                  fontSize: 20.0,
-                                                  color: Colors.black54,
-                                                ),),
-                                            ],
+                                    Container(
+                                      width: 240.0,
+                                      height: 140.0,
+                                      child: RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              side: BorderSide(
+                                                  color: Colors.grey)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 18),
+                                            child: Column(
+                                              // Replace with a Row for horizontal icon + text
+                                              children: <Widget>[
+                                                Icon(Icons.history,
+                                                    size: 70.0,
+                                                    color: Colors.lightGreen),
+                                                Text(
+                                                  "Histórico",
+                                                  style: new TextStyle(
+                                                    fontSize: 20.0,
+                                                    color: Colors.black54,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        color: Colors.white,
-                                        onPressed: () {
-                                          Navigator.of(context).push(MaterialPageRoute(
-                                              builder: (context) => Historico_De_Venda()));
-                                        } // ação ,
-                                        ),
-                                  ),
+                                          color: Colors.white,
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Historico_De_Venda()));
+                                          } // ação ,
+                                          ),
+                                    ),
                                   ],
                                 ),
                               ),
-                        ),
-                        Flexible(
-
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(12, 230, 18, 12),
-                              child: Column(
-
-                                children: [
-
-                                  Container(
-                                    width: 240.0,
-                                    height: 140.0,
-                                  //Image/bibiimagem.jpeg
-                                  child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(18.0),
-                                          side: BorderSide(color: Colors.grey)
-                                      ),
-
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 25),
-                                        child: Column( // Replace with a Row for horizontal icon + text
-                                          children: <Widget>[
-                                            ImageIcon(AssetImage('Image/6.png'), size: 58.0),
-                                            Text("Produto",
-                                              style: new TextStyle(
-                                                fontSize: 20.0,
-                                                color: Colors.black54,
-                                              ),)
-                                          ],
-                                        ),
-                                      ),
-
-
-                                      textColor: Colors.black,
-                                      color: Colors.white,
-                                      onPressed: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) => prodhome.HomePage()));
-                                      } // ação ,
-                                  ),
-
-                              ),
-
-                                ],
+                            ),
+                            Flexible(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(12, 230, 18, 12),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 240.0,
+                                      height: 140.0,
+                                      //Image/bibiimagem.jpeg
+                                      child: RaisedButton(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              side: BorderSide(
+                                                  color: Colors.grey)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 25),
+                                            child: Column(
+                                              // Replace with a Row for horizontal icon + text
+                                              children: <Widget>[
+                                                ImageIcon(
+                                                    AssetImage('Image/6.png'),
+                                                    size: 58.0),
+                                                Text(
+                                                  "Produto",
+                                                  style: new TextStyle(
+                                                    fontSize: 20.0,
+                                                    color: Colors.black54,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          textColor: Colors.black,
+                                          color: Colors.white,
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        prodhome.HomePage()));
+                                          } // ação ,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                        ),
                           ],
                         ),
                       ),
                     ),
-
                   ],
                 ),
-
               ),
               Center(
                 child: new Column(
@@ -182,59 +188,61 @@ class MyHome extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: new SizedBox(
-
                         child: Row(
-
                           children: <Widget>[
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(100, 0, 12, 60),
+                                padding:
+                                    const EdgeInsets.fromLTRB(100, 0, 12, 60),
                                 child: Column(
                                   children: [
                                     Container(
-
                                       width: 170.0,
                                       height: 140.0,
                                       child: RaisedButton(
-
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(18.0),
-                                              side: BorderSide(color: Colors.grey)
-
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              side: BorderSide(
+                                                  color: Colors.grey)),
                                           child: Padding(
-                                            padding: const EdgeInsets.symmetric(vertical: 18),
-                                            child: Column( // Replace with a Row for horizontal icon + text
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 18),
+                                            child: Column(
+                                              // Replace with a Row for horizontal icon + text
                                               children: <Widget>[
-                                                Icon(Icons.history, size: 70.0, color: Colors.lightGreen),
-                                                Text("Vendas",
+                                                Icon(Icons.history,
+                                                    size: 70.0,
+                                                    color: Colors.lightGreen),
+                                                Text(
+                                                  "Vendas",
                                                   style: new TextStyle(
                                                     fontSize: 20.0,
                                                     color: Colors.black54,
-                                                  ),),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
                                           color: Colors.white,
                                           onPressed: () {
-                                            Navigator.of(context).push(MaterialPageRoute(
-                                                builder: (context) => Historico_De_Venda()));
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Historico_De_Venda()));
                                           } // ação ,
-                                      ),
+                                          ),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                       ),
                     ),
-
                   ],
                 ),
-
               ),
             ],
           ),
