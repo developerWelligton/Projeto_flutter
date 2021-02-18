@@ -6,15 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 const _titulo = "Historico de venda";
+
 class Historico_De_Venda extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return HistVenda(
-    );
-
+    return HistVenda();
   }
 }
-
 
 class HistVenda extends StatefulWidget {
   @override
@@ -22,7 +20,6 @@ class HistVenda extends StatefulWidget {
 }
 
 class _HomePageState extends State<HistVenda> {
-
   DatabaseHelper db = DatabaseHelper();
   List<Contato> hists = List<Contato>();
   List<Contato> hists2 = List<Contato>();
@@ -33,12 +30,11 @@ class _HomePageState extends State<HistVenda> {
 
     //Contato c = Contato(1,"Maria",2,2,2,2);
     //db.insertContato(c);
-     _exibeTodosContatos();
+    _exibeTodosContatos();
     //print(Contato(2,"Maria",2,2,2,4));
   }
 
-
-  void _exibeTodosContatos(){
+  void _exibeTodosContatos() {
     db.getContatos2().then((lista) {
       setState(() {
         hists = lista.cast<Contato>();
@@ -54,36 +50,39 @@ class _HomePageState extends State<HistVenda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+// Area relacionada a parte superior de historico de vendas
       appBar: AppBar(
         title: Text(_titulo),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.red,
         centerTitle: true,
         actions: <Widget>[],
       ),
+
+      //area de fundo de historico de vendas
       backgroundColor: Colors.white,
-
-
       body: ListView.builder(
         padding: EdgeInsets.all(10.0),
-        itemCount: hists.length ,
+        itemCount: hists.length,
         itemBuilder: (context, index) {
-          return listaContatos(context,index);
+          return listaContatos(context, index);
         },
       ),
     );
   }
 
+//----------DAQUI PRA BAIXO NEM OLHA---------------------------------------------------------------------
   listaContatos(BuildContext context, int index) {
     return GestureDetector(
       child: Card(
-          child: Padding(padding: EdgeInsets.all(10.0),
-              child:Row(
+          child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Row(
                 children: <Widget>[
                   Container(
-                    width: 70.0, height: 70.0,
+                    width: 70.0,
+                    height: 70.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-
                     ),
                   ),
                   Padding(
@@ -92,43 +91,35 @@ class _HomePageState extends State<HistVenda> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(hists[index].nome ?? "",
-                              style: TextStyle(fontSize: 20)
-                          ),
-                          Text("Mudança no Estoque: " + (hists[index].ES).toString() ?? "",
-                              style: TextStyle(fontSize: 15)
-                          ),
+                              style: TextStyle(fontSize: 20)),
+                          Text(
+                              "Mudança no Estoque: " +
+                                      (hists[index].ES).toString() ??
+                                  "",
+                              style: TextStyle(fontSize: 15)),
                           /*Text("Renda Estimada: R\$ " + (hists[index].VL).toStringAsFixed(2) ?? "",
                               style: TextStyle(fontSize: 15)
                           ),*/
-                          Text("Data: ${(new DateFormat.yMMMd().format(new DateTime.now()))}",
+                          Text(
+                            "Data: ${(new DateFormat.yMMMd().format(new DateTime.now()))}",
                           ),
-
                         ],
-                      )
-                  )
+                      ))
                 ],
-              )
-          )
-      ),
-
+              ))),
     );
   }
 
-
-
   void _exibeContatoPage({Contato hist}) async {
-    final contatoRecebido =  await Navigator.push(context,
-      MaterialPageRoute(
-          builder: (
-              context)=> ContatoPages(contato: hist)
-      ),
+    final contatoRecebido = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ContatoPages(contato: hist)),
     );
 
-    if(contatoRecebido != null){
-      if(hist != null )
-      {
+    if (contatoRecebido != null) {
+      if (hist != null) {
         await db.updateContato(contatoRecebido);
-      }else{
+      } else {
         await db.insertContato(contatoRecebido);
       }
       _exibeTodosContatos();

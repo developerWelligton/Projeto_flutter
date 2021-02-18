@@ -7,7 +7,6 @@ import 'package:daniela/main.dart';
 //import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class Hist_Vendas extends StatefulWidget {
-
   final Contato contato;
   Hist_Vendas({this.contato});
 
@@ -16,23 +15,22 @@ class Hist_Vendas extends StatefulWidget {
 }
 
 class _Hist_VendasState extends State<Hist_Vendas> {
-
   final _nomeController = TextEditingController();
   final _HTController = TextEditingController();
   final _LEController = TextEditingController();
   final _VLController = TextEditingController();
   final _nomeFocus = FocusNode();
   final _producao = TextEditingController();
-  bool editado= false;
+  bool editado = false;
   Contato _editaContato;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
-    if(widget.contato == null){
-      _editaContato = Contato(null,'',0,0,0,0);
-    }else{
+    if (widget.contato == null) {
+      _editaContato = Contato(null, '', 0, 0, 0, 0);
+    } else {
       _editaContato = Contato.fromMap(widget.contato.toMap());
 
       _nomeController.text = _editaContato.mes;
@@ -40,7 +38,6 @@ class _Hist_VendasState extends State<Hist_Vendas> {
       _LEController.text = _editaContato.markup.toString();
       _HTController.text = _editaContato.TotVendas.toString();
       _producao.text = _editaContato.Producao.toString();
-
     }
   }
 
@@ -49,16 +46,15 @@ class _Hist_VendasState extends State<Hist_Vendas> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.indigo,
-          title: Text(_editaContato.mes == '' ? "Tabela Mês" :
-          _editaContato.mes ),
+          title:
+              Text(_editaContato.mes == '' ? "Tabela Mês" : _editaContato.mes),
           centerTitle: true,
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            if(_editaContato.mes != null && _editaContato.mes.isNotEmpty)
-            {
+            if (_editaContato.mes != null && _editaContato.mes.isNotEmpty) {
               Navigator.pop(context, _editaContato);
-            }else{
+            } else {
               _exibeAviso();
               FocusScope.of(context).requestFocus(_nomeFocus);
             }
@@ -72,10 +68,10 @@ class _Hist_VendasState extends State<Hist_Vendas> {
               children: <Widget>[
                 GestureDetector(
                   child: Container(
-                    width: 70.0, height: 70.0,
+                    width: 70.0,
+                    height: 70.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-
                     ),
                   ),
                 ),
@@ -83,7 +79,7 @@ class _Hist_VendasState extends State<Hist_Vendas> {
                   controller: _nomeController,
                   focusNode: _nomeFocus,
                   decoration: InputDecoration(labelText: "Mês"),
-                  onChanged: (text){
+                  onChanged: (text) {
                     editado = true;
                     setState(() {
                       _editaContato.mes = text;
@@ -93,7 +89,7 @@ class _Hist_VendasState extends State<Hist_Vendas> {
                 TextField(
                   controller: _HTController,
                   decoration: InputDecoration(labelText: "Vendas"),
-                  onChanged: (text){
+                  onChanged: (text) {
                     editado = true;
                     setState(() {
                       //final rendaMensalController = MoneyMaskedTextController(decimalSeparator: '.', thousandSeparator: ',', leftSymbol: 'R\$');
@@ -104,8 +100,9 @@ class _Hist_VendasState extends State<Hist_Vendas> {
                 ),
                 TextField(
                   controller: _LEController,
-                  decoration: InputDecoration(labelText: "Lucro esperado o famoso markup"),
-                  onChanged: (text){
+                  decoration: InputDecoration(
+                      labelText: "Lucro esperado o famoso markup"),
+                  onChanged: (text) {
                     editado = true;
                     setState(() {
                       _editaContato.markup = double.parse(text);
@@ -115,7 +112,7 @@ class _Hist_VendasState extends State<Hist_Vendas> {
                 TextField(
                   controller: _VLController,
                   decoration: InputDecoration(labelText: "Caixa"),
-                  onChanged: (text){
+                  onChanged: (text) {
                     editado = true;
                     setState(() {
                       //icone: Icons.monetization_on;
@@ -126,7 +123,7 @@ class _Hist_VendasState extends State<Hist_Vendas> {
                 TextField(
                   controller: _producao,
                   decoration: InputDecoration(labelText: "Producao"),
-                  onChanged: (text){
+                  onChanged: (text) {
                     editado = true;
                     setState(() {
                       //icone: Icons.monetization_on;
@@ -134,11 +131,8 @@ class _Hist_VendasState extends State<Hist_Vendas> {
                     });
                   },
                 ),
-
               ],
-            )
-        )
-    );
+            )));
   }
 
   void _exibeAviso() {
@@ -160,5 +154,4 @@ class _Hist_VendasState extends State<Hist_Vendas> {
       },
     );
   }
-
 }

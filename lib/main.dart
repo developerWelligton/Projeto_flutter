@@ -5,7 +5,7 @@ import 'package:daniela/HelpMe/database_helper.dart';
 import 'package:daniela/models/contato.dart';
 import 'package:daniela/pages/home_page.dart' as prodhome;
 import 'package:daniela/TodosdaLib/pages/home_page.dart' as distrihome;
-import 'package:daniela/historicoDeVenda.dart';
+import 'package:daniela/TodosdaLib/Pag2Lib/historicoDeVenda.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'Login/app.dart';
@@ -56,6 +56,7 @@ class MyHome extends StatelessWidget {
         child: Icon(Icons.close),
         backgroundColor: Colors.red,
       ),
+//----------------------PARTE INICIAL DO APP--------------------------
       body: Container(
         child: Container(
           //this is the problem
@@ -63,6 +64,7 @@ class MyHome extends StatelessWidget {
           decoration: BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
+//-----------IMAGEM RELACIONADA AO  FUNDO DA PARTE INICIAL
                   image: AssetImage("Image/bibiimagem.jpg"),
                   fit: BoxFit.cover,
                   colorFilter: new ColorFilter.mode(
@@ -84,6 +86,7 @@ class MyHome extends StatelessWidget {
                                     const EdgeInsets.fromLTRB(18, 230, 12, 12),
                                 child: Column(
                                   children: [
+//LOCAL RELACIONADO AO HISTORICO INIcial
                                     Container(
                                       width: 240.0,
                                       height: 140.0,
@@ -129,6 +132,7 @@ class MyHome extends StatelessWidget {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(12, 230, 18, 12),
+//AREA RELACIONADA AO PRODUTO
                                 child: Column(
                                   children: [
                                     Container(
@@ -147,11 +151,10 @@ class MyHome extends StatelessWidget {
                                             child: Column(
                                               // Replace with a Row for horizontal icon + text
                                               children: <Widget>[
-                                                ImageIcon(
-                                                    AssetImage('Image/6.png'),
+                                                ImageIcon(AssetImage('img.png'),
                                                     size: 58.0),
                                                 Text(
-                                                  "Produto",
+                                                  "Produtos",
                                                   style: new TextStyle(
                                                     fontSize: 20.0,
                                                     color: Colors.black54,
@@ -196,9 +199,10 @@ class MyHome extends StatelessWidget {
                                     const EdgeInsets.fromLTRB(100, 0, 12, 60),
                                 child: Column(
                                   children: [
+//AREA RELACIONADA A TABELA DE DISTRIBUIÇÃO
                                     Container(
                                       width: 170.0,
-                                      height: 140.0,
+                                      height: 170.0,
                                       child: RaisedButton(
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -215,7 +219,7 @@ class MyHome extends StatelessWidget {
                                                     size: 70.0,
                                                     color: Colors.lightGreen),
                                                 Text(
-                                                  "Vendas",
+                                                  "Tabela de distriução",
                                                   style: new TextStyle(
                                                     fontSize: 20.0,
                                                     color: Colors.black54,
@@ -224,7 +228,7 @@ class MyHome extends StatelessWidget {
                                               ],
                                             ),
                                           ),
-                                          color: Colors.white,
+                                          color: Colors.white, //ba
                                           onPressed: () {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
@@ -251,6 +255,7 @@ class MyHome extends StatelessWidget {
     );
   }
 }
+//-----------------------------PARTE INICIAL DO APP-------------------------------------------------------------
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

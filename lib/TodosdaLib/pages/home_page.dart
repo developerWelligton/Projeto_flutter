@@ -10,7 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   DatabaseHelper db = DatabaseHelper();
   List<Contato> contatos = List<Contato>();
 
@@ -18,14 +17,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-     //Contato c = Contato(null,"Maria",2,2,2,4);
-     //db.insertContato(c);
+    //Contato c = Contato(null,"Maria",2,2,2,4);
+    //db.insertContato(c);
     _exibeTodosContatos();
     //print(Contato(null,"Maria",2,2,2,4));
   }
 
-  void _exibeTodosContatos(){
-    db.getContatos().then( (lista) {
+  void _exibeTodosContatos() {
+    db.getContatos().then((lista) {
       setState(() {
         contatos = lista;
       });
@@ -50,9 +49,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(10.0),
-        itemCount: contatos.length ,
+        itemCount: contatos.length,
         itemBuilder: (context, index) {
-          return _listaContatos(context,index);
+          return _listaContatos(context, index);
         },
       ),
     );
@@ -61,15 +60,16 @@ class _HomePageState extends State<HomePage> {
   _listaContatos(BuildContext context, int index) {
     return GestureDetector(
       child: Card(
-          child: Padding(padding: EdgeInsets.all(10.0),
-              child:Row(
+          child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    width: 70.0, height: 70.0,
+                    width: 70.0,
+                    height: 70.0,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-
                     ),
                   ),
                   Padding(
@@ -78,35 +78,47 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(contatos[index].mes ?? "",
-                              style: TextStyle(fontSize: 20)
-                          ),
-                          Text("Vendas: R\$ " + contatos[index].TotVendas.toStringAsFixed(2) ?? "",
-                              style: TextStyle(fontSize: 15)
-                          ),
-                          Text("Lucro Esperado: R\$ " + contatos[index].markup.toStringAsFixed(2) ?? "",
-                              style: TextStyle(fontSize: 15)
-                          ),
-                          Text("Caixa: R\$ " + contatos[index].caixa.toStringAsFixed(2) ?? "",
-                              style: TextStyle(fontSize: 15)
-                          ),
-                          Text("Produção: R\$ " + contatos[index].Producao.toStringAsFixed(2) ?? "",
-                              style: TextStyle(fontSize: 15)
-                          )
+                              style: TextStyle(fontSize: 20)),
+                          Text(
+                              "Vendas: R\$ " +
+                                      contatos[index]
+                                          .TotVendas
+                                          .toStringAsFixed(2) ??
+                                  "",
+                              style: TextStyle(fontSize: 15)),
+                          Text(
+                              "Lucro Esperado: R\$ " +
+                                      contatos[index]
+                                          .markup
+                                          .toStringAsFixed(2) ??
+                                  "",
+                              style: TextStyle(fontSize: 15)),
+                          Text(
+                              "Caixa: R\$ " +
+                                      contatos[index]
+                                          .caixa
+                                          .toStringAsFixed(2) ??
+                                  "",
+                              style: TextStyle(fontSize: 15)),
+                          Text(
+                              "Produção: R\$ " +
+                                      contatos[index]
+                                          .Producao
+                                          .toStringAsFixed(2) ??
+                                  "",
+                              style: TextStyle(fontSize: 15))
                         ],
-                      )
-                  ),
+                      )),
                   Flexible(
                     child: IconButton(
                       icon: Icon(Icons.delete),
-                      onPressed: (){
+                      onPressed: () {
                         _confirmaExclusao(context, contatos[index].id, index);
                       },
                     ),
                   ),
                 ],
-              )
-          )
-      ),
+              ))),
       onTap: () {
         _exibeContatoPage(contato: contatos[index]);
       },
@@ -114,23 +126,21 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _exibeContatoPage({Contato contato}) async {
-    final contatoRecebido =  await Navigator.push(context,
-      MaterialPageRoute(
-          builder: (
-              context)=> ContatoPage(contato: contato)
-      ),
+    final contatoRecebido = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ContatoPage(contato: contato)),
     );
 
-    if(contatoRecebido != null){
-      if(contato != null )
-      {
+    if (contatoRecebido != null) {
+      if (contato != null) {
         await db.updateContato(contatoRecebido);
-      }else{
+      } else {
         await db.insertContato(contatoRecebido);
       }
       _exibeTodosContatos();
     }
   }
+
   void _confirmaExclusao(BuildContext context, int contatoid, index) {
     showDialog(
         context: context,
@@ -139,19 +149,22 @@ class _HomePageState extends State<HomePage> {
             title: Text("Excluir Contato"),
             content: Text("Confirma a exclusão do Contato"),
             actions: <Widget>[
-              FlatButton(onPressed: () {Navigator.of(context).pop();}
-                  , child: Text('Cancelar')),
-              FlatButton(onPressed: () {
-                setState(() {
-                  contatos.removeAt(index);
-                  db.deleteContato(contatoid);
-                });
-                Navigator.of(context).pop();
-              }
-                  , child: Text('Excluir'))
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Cancelar')),
+              FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      contatos.removeAt(index);
+                      db.deleteContato(contatoid);
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Excluir'))
             ],
           );
-        }
-    );
+        });
   }
 }
